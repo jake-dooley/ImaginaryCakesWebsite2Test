@@ -1,0 +1,113 @@
+:root {
+  /* Brand colors (CLAUDE.md) */
+  --color-blush:        #F9E4E4;
+  --color-blush-active: #F0C8C8;
+  --color-blush-soft:   #FDF4F4;
+  --color-cream:        #FAF6F1;
+  --color-cream-deep:   #F0E8D8;
+  --color-cream-soft:   #FDFAF6;
+  --color-white:        #FFFFFF;
+  --color-gold:         #C9A84C;
+  --color-gold-light:   #E8D5A3;
+
+  /* Text */
+  --color-ink:          #2C1810;
+  --color-body:         #4A3020;
+  --color-muted:        #8B6F5E;
+  --color-muted-soft:   #B5A090;
+  --color-on-blush:     #2C1810;
+
+  /* Hairlines */
+  --color-hairline:     rgba(44, 24, 16, 0.12);
+  --color-border:       rgba(44, 24, 16, 0.24);
+
+  /* Semantic */
+  --color-star:         #C9A84C;
+  --color-success:      #5A8060;
+  --color-error:        #A0413E;
+
+  /* Fonts (Playfair Display = headings, Lato = body per CLAUDE.md) */
+  --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-ui:      var(--font-lato), 'Lato', -apple-system, system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xxs:     2px;
+  --space-xs:      4px;
+  --space-sm:      8px;
+  --space-md:      12px;
+  --space-base:    16px;
+  --space-lg:      24px;
+  --space-xl:      40px;
+  --space-xxl:     64px;
+  --space-section: 96px;
+
+  /* Radii */
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: rgba(44,24,16,.04) 0 0 0 1px, rgba(44,24,16,.04) 0 4px 12px 0, rgba(44,24,16,.06) 0 12px 24px -8px;
+  --shadow-lift: rgba(44,24,16,.08) 0 16px 40px -12px;
+
+  /* Gold gradient (used on all buttons per CLAUDE.md) */
+  --gradient-gold: linear-gradient(135deg, #C9A84C 0%, #E8D5A3 50%, #C9A84C 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  color: var(--color-ink);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+p { color: var(--color-body); line-height: 1.65; }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* Ornament divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px auto 24px;
+  width: 220px;
+}
+.ornament::before,
+.ornament::after {
+  content: '';
+  height: 1px;
+  background: var(--color-border);
+  flex: 1;
+}
+.ornament--left { margin-left: 0; justify-content: flex-start; }
+.ornament--left::after { display: none; }
+.ornament--left::before { width: 80px; flex: none; }
+
+.diamond {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--color-ink);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(44,24,16,.18); border-radius: 4px; }
