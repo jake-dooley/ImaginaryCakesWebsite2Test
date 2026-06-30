@@ -20,17 +20,19 @@ const BASE = {
 }
 
 // Gold gradient button — required for all buttons per CLAUDE.md
-export const GoldButton = ({ children, onClick, href, style, className }) => {
+export const GoldButton = ({ children, onClick, href, style, className, type = 'button', disabled }) => {
   const [hover, setHover] = useState(false)
   const sharedStyle = {
     ...BASE,
     background: 'var(--gradient-gold)',
     color: '#2C1810',
-    boxShadow: hover
+    boxShadow: hover && !disabled
       ? '0 8px 24px rgba(201,168,76,.45), 0 2px 8px rgba(201,168,76,.2)'
       : '0 4px 16px rgba(201,168,76,.25)',
-    transform: hover ? 'translateY(-2px)' : 'translateY(0)',
+    transform: hover && !disabled ? 'translateY(-2px)' : 'translateY(0)',
     transition: 'transform 180ms ease, box-shadow 180ms ease',
+    opacity: disabled ? 0.6 : 1,
+    cursor: disabled ? 'not-allowed' : 'pointer',
     ...style,
   }
   const handlers = {
@@ -42,7 +44,7 @@ export const GoldButton = ({ children, onClick, href, style, className }) => {
   if (href) {
     return <Link href={href} {...handlers}>{children}</Link>
   }
-  return <button type="button" onClick={onClick} {...handlers}>{children}</button>
+  return <button type={type} onClick={onClick} disabled={disabled} {...handlers}>{children}</button>
 }
 
 // Outline / ghost button

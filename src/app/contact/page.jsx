@@ -28,9 +28,34 @@ function ContactSection() {
   const formRef = useRef(null)
   const infoRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({ name: '', email: '', phone: '', eventDate: '', guests: '', cakeType: 'Weddings', message: '' })
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSending(true)
+    setError(null)
+    try {
+      const formData = new FormData()
+      Object.entries(form).forEach(([k, v]) => formData.append(k, v))
+      formData.append('access_key', '7fc6669b-4903-42b5-a343-ecebbda3c330')
+      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      const data = await response.json()
+      if (response.ok) {
+        setSubmitted(true)
+        setForm({ name: '', email: '', phone: '', eventDate: '', guests: '', cakeType: 'Weddings', message: '' })
+      } else {
+        setError(data.message || 'Submission failed. Please try again.')
+      }
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -88,7 +113,7 @@ function ContactSection() {
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'flex-start' }}>
 
         {/* Form */}
-        <form ref={formRef} onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}
+        <form ref={formRef} onSubmit={handleSubmit}
           style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           {submitted && (
             <div style={{
@@ -101,6 +126,19 @@ function ContactSection() {
               color: 'var(--color-success)',
             }}>
               Thank you! We'll be in touch within one business day.
+            </div>
+          )}
+          {error && (
+            <div style={{
+              background: '#fff5f5',
+              border: '1px solid rgba(200,60,60,.35)',
+              borderRadius: 12,
+              padding: '14px 18px',
+              fontFamily: 'var(--font-display)',
+              fontSize: 16,
+              color: '#c43c3c',
+            }}>
+              {error}
             </div>
           )}
 
@@ -154,7 +192,7 @@ function ContactSection() {
           </div>
 
           <div className="form-field" style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-            <GoldButton>Send Note</GoldButton>
+            <GoldButton type="submit" disabled={sending}>{sending ? 'Sending…' : 'Send Note'}</GoldButton>
             <span style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 14, color: 'var(--color-muted)' }}>
               We reply within one business day.
             </span>
