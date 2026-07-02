@@ -101,7 +101,7 @@ function HeroSection() {
           {/* Diamond rule */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '26px 0 18px' }}>
             <div style={{ width: 60, height: 1, background: 'var(--color-border)' }} />
-            <div style={{ width: 6, height: 6, border: '1px solid var(--sprinkle-pink)', transform: 'rotate(45deg)' }} />
+            <div style={{ width: 6, height: 6, border: '1px solid var(--color-ink)', transform: 'rotate(45deg)' }} />
             <div style={{ width: 60, height: 1, background: 'var(--color-border)' }} />
           </div>
 
@@ -239,7 +239,6 @@ function CategoriesSection() {
         title="A Delight for Every Celebration —"
         titleItalicPart="Choose Your Slice."
         sub="From garden weddings to sculpted 3D showstoppers, every cake we make is fully custom."
-        accentColor="var(--sprinkle-yellow)"
       />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32, alignItems: 'end' }}>
@@ -289,7 +288,6 @@ function OurWorksSection() {
         title="Every Cake"
         titleItalicPart="Tells a Sweet Story."
         sub="A peek at recent celebrations baked from our Wilmington kitchen."
-        accentColor="var(--sprinkle-green)"
       />
       <div ref={ref} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
         {CAKE_PHOTOS.slice(0, 4).map((c) => (
@@ -323,7 +321,6 @@ function TestimonialsSection() {
         title="Every Review Tells a Story —"
         titleItalicPart="Here's What You Think."
         sub="Five years of weddings, birthdays, and impossible 3D cakes — and the kindest words."
-        accentColor="var(--sprinkle-blue)"
       />
       <div ref={ref}>
         <TestimonialCarousel />
@@ -337,7 +334,7 @@ function FAQSection() {
   const ref = useScrollReveal({ y: 30 })
   return (
     <section style={{ padding: '96px 48px', maxWidth: 1080, margin: '0 auto', position: 'relative' }}>
-      <SectionIntro eyebrow="FAQ" title="Find Answers to Your Most" titleItalicPart="Common Questions." accentColor="var(--sprinkle-turquoise)" />
+      <SectionIntro eyebrow="FAQ" title="Find Answers to Your Most" titleItalicPart="Common Questions." />
       <div ref={ref} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 32, alignItems: 'flex-start' }}>
         <FAQAccordion items={FAQS.slice(0, 5)} />
         <FAQHelpCard href="/contact" />
@@ -357,7 +354,7 @@ function AwardsSection() {
   return (
     <section style={{ padding: '0 48px 96px' }}>
       <Eyebrow style={{ marginBottom: 16 }}>Featured On</Eyebrow>
-      <OrnamentRule color="var(--sprinkle-coral)" />
+      <OrnamentRule />
       <div ref={ref} style={{ maxWidth: 1240, margin: '0 auto' }}>
         <AwardsRow />
       </div>

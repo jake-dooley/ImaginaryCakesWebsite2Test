@@ -43,7 +43,7 @@ function FAQItem({ item, isOpen, onToggle }) {
       borderRadius: 16,
       padding: '20px 24px',
       cursor: 'pointer',
-      border: `1px solid ${isOpen ? 'rgba(46,196,198,.25)' : 'transparent'}`,
+      border: `1px solid ${isOpen ? 'rgba(201,168,76,.3)' : 'transparent'}`,
       transition: 'border-color 200ms ease',
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
@@ -90,7 +90,7 @@ export function FAQHelpCard({ href = '/contact' }) {
         width: 44, height: 44, borderRadius: '50%',
         background: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: 'var(--sprinkle-yellow)',
+        color: 'var(--color-ink)',
       }}>
         <IconHelp size={22} />
       </div>

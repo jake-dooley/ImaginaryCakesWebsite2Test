@@ -26,14 +26,6 @@
   --color-success:      #5A8060;
   --color-error:        #A0413E;
 
-  /* Sprinkle accent palette */
-  --sprinkle-pink:      #F45B92;
-  --sprinkle-turquoise: #2EC4C6;
-  --sprinkle-yellow:    #F5B942;
-  --sprinkle-green:     #8BC34A;
-  --sprinkle-blue:      #4FA3D9;
-  --sprinkle-coral:     #FF7A5C;
-
   /* Fonts (Playfair Display = headings, Lato = body per CLAUDE.md) */
   --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --font-ui:      var(--font-lato), 'Lato', -apple-system, system-ui, sans-serif;
@@ -111,7 +103,7 @@ img { max-width: 100%; display: block; }
 .diamond {
   width: 6px;
   height: 6px;
-  border: 1px solid var(--diamond-color, var(--color-ink));
+  border: 1px solid var(--color-ink);
   transform: rotate(45deg);
   flex-shrink: 0;
 }

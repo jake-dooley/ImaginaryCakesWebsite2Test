@@ -98,7 +98,7 @@ export default function Nav() {
                   transform: 'translateX(-50%) rotate(45deg)',
                   width: 5,
                   height: 5,
-                  border: '1px solid var(--sprinkle-coral)',
+                  border: '1px solid var(--color-ink)',
                 }} />
               )}
             </Link>
