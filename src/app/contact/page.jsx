@@ -10,17 +10,18 @@ import { CATEGORIES, BUSINESS } from '@/data'
 
 export default function ContactPage() {
   return (
-    <>
+    <div style={{ '--page-accent': 'var(--sprinkle-green)' }}>
       <PageHero
         eyebrow="Contact Us"
         title="Tell Us About"
         titleItalicPart="Your Sweet Moment."
         sub="Every cake starts with a conversation. Drop us a note with your event date, guest count, and any inspiration — we'll be back within one business day."
+        accentColor="var(--sprinkle-green)"
       />
       <ContactSection />
       <Marquee items={['Cakes So Good', "They Can't Be Real", 'Booking Spring 2026']} color="blush" />
       <ClosingCTA />
-    </>
+    </div>
   )
 }
 
@@ -115,8 +116,8 @@ function ContactSection() {
   }
 
   const handleFocus = (e) => {
-    e.target.style.borderColor = 'var(--color-gold)'
-    e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,.15)'
+    e.target.style.borderColor = 'var(--sprinkle-green)'
+    e.target.style.boxShadow = '0 0 0 3px rgba(139,195,74,.15)'
   }
   const handleBlur = (e) => {
     e.target.style.borderColor = 'var(--color-hairline)'
@@ -227,7 +228,7 @@ function ContactSection() {
 
         {/* Info card */}
         <aside ref={infoRef} style={{
-          background: 'var(--color-cream-soft)',
+          background: 'var(--sprinkle-green-tint)',
           borderRadius: 16,
           padding: 32,
           display: 'flex',
@@ -247,20 +248,20 @@ function ContactSection() {
 
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
-          <InfoLine icon={<IconClock size={18} />} title="Hours" iconColor="var(--sprinkle-turquoise)">
+          <InfoLine icon={<IconClock size={18} />} title="Hours" iconColor="var(--sprinkle-green)">
             {BUSINESS.hours}<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>{BUSINESS.hoursNote}</span>
           </InfoLine>
           <InfoLine icon={<IconPhone size={18} />} title="Phone" iconColor="var(--sprinkle-green)">{BUSINESS.phone}</InfoLine>
-          <InfoLine icon={<IconMail size={18} />} title="Email" iconColor="var(--sprinkle-blue)">{BUSINESS.email}</InfoLine>
+          <InfoLine icon={<IconMail size={18} />} title="Email" iconColor="var(--sprinkle-green)">{BUSINESS.email}</InfoLine>
 
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
-          <InfoLine icon={<IconInstagram size={18} />} title="Instagram" iconColor="var(--sprinkle-pink)">
+          <InfoLine icon={<IconInstagram size={18} />} title="Instagram" iconColor="var(--sprinkle-green)">
             @imaginarycakes<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>3,600+ followers</span>
           </InfoLine>
-          <InfoLine icon={<IconFacebook size={18} />} title="Facebook" iconColor="var(--sprinkle-coral)">
+          <InfoLine icon={<IconFacebook size={18} />} title="Facebook" iconColor="var(--sprinkle-green)">
             facebook.com/imaginarycakes<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>98% recommend</span>
           </InfoLine>
@@ -268,7 +269,7 @@ function ContactSection() {
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
           <div style={{
-            background: 'linear-gradient(135deg, #FFEFC9, #FFF8E7)',
+            background: 'var(--sprinkle-green-tint)',
             borderRadius: 12,
             padding: 16,
             fontFamily: 'var(--font-display)',

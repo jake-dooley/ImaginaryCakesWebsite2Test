@@ -11,18 +11,19 @@ import { RATINGS } from '@/data'
 
 export default function AboutPage() {
   return (
-    <>
+    <div style={{ '--page-accent': 'var(--sprinkle-pink)' }}>
       <PageHero
         eyebrow="About Us"
         title="A Family Recipe, Baked with Love"
         sub="Have a vision for your next celebration? We'd love to hear about it."
+        accentColor="var(--sprinkle-pink)"
       />
       <StorySection />
       <StatsSection />
       <WhatWeMakeSection />
       <AwardsSection />
       <ClosingCTA />
-    </>
+    </div>
   )
 }
 
@@ -59,7 +60,7 @@ function StorySection() {
         </div>
         <div ref={textRef}>
           <Eyebrow align="left">Since 2009</Eyebrow>
-          <OrnamentRule align="left" style={{ marginLeft: 0 }} color="var(--sprinkle-turquoise)" />
+          <OrnamentRule align="left" style={{ marginLeft: 0 }} color="var(--sprinkle-pink)" />
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3vw, 38px)', fontWeight: 500, lineHeight: 1.15, margin: 0 }}>
             From a small home kitchen to <em>Carolina Beach Road.</em>
           </h2>
@@ -91,8 +92,8 @@ function WhatWeMakeSection() {
       <div ref={ref} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
         {[
           { title: 'Buttercream & Fondant', body: 'Italian and Swiss buttercream piped fresh; smooth fondant in vanilla and chocolate. We pick the medium that suits your design, never the other way round.', bg: 'var(--sprinkle-pink-tint)' },
-          { title: 'Fully Sculpted 3D Cakes', body: 'From hand-painted teapots to life-size animal portraits. Internal supports and edible cake — even the seashells were edible.', bg: 'var(--sprinkle-blue-tint)' },
-          { title: 'Dietary Considerations', body: 'Vegan chocolate with vegan buttercream, and gluten-free options on most flavors. We\'ll talk through the right adjustment for your guests.', bg: 'var(--sprinkle-green-tint)' },
+          { title: 'Fully Sculpted 3D Cakes', body: 'From hand-painted teapots to life-size animal portraits. Internal supports and edible cake — even the seashells were edible.', bg: 'var(--sprinkle-pink-tint)' },
+          { title: 'Dietary Considerations', body: 'Vegan chocolate with vegan buttercream, and gluten-free options on most flavors. We\'ll talk through the right adjustment for your guests.', bg: 'var(--sprinkle-pink-tint)' },
         ].map((c) => (
           <div key={c.title} className="feature-card" style={{
             background: c.bg, borderRadius: 16, padding: 28,
@@ -116,9 +117,9 @@ function WhatWeMakeSection() {
 function AwardsSection() {
   const ref = useScrollReveal({ y: 30 })
   return (
-    <section style={{ padding: '72px 48px 96px', background: 'var(--sprinkle-yellow-tint)' }}>
+    <section style={{ padding: '72px 48px 96px', background: 'var(--sprinkle-pink-tint)' }}>
       <Eyebrow style={{ marginBottom: 16 }}>Recognized By</Eyebrow>
-      <OrnamentRule color="var(--sprinkle-yellow)" />
+      <OrnamentRule color="var(--sprinkle-pink)" />
       <h2 style={{ textAlign: 'center', fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 500, margin: '0 0 48px' }}>
         A few kind words from the <em>wedding world.</em>
       </h2>

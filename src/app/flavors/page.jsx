@@ -9,36 +9,34 @@ import { FLAVORS } from '@/data'
 
 export default function FlavorsPage() {
   return (
-    <>
+    <div style={{ '--page-accent': 'var(--sprinkle-yellow)' }}>
       <PageHero
         eyebrow="The Flavor Menu"
         title="Pick a Cake,"
         titleItalicPart="Then Build a Flavor."
         sub="Every order starts with a cake flavor, an icing, and (optionally) a filling. Mix and match — there are over a thousand combinations on this page alone."
+        accentColor="var(--sprinkle-yellow)"
       />
 
       <section style={{ maxWidth: 1080, margin: '0 auto', padding: '8px 40px 96px' }}>
-        <FlavorSection eyebrow="Cake — Standard" note="Included with every order." flavors={FLAVORS.cakeStandard} accentColor="var(--sprinkle-yellow)" />
-        <FlavorSection eyebrow="Cake — Premium" note="Small additional charge per serving." flavors={FLAVORS.cakePremium} variant="premium" accentColor="var(--sprinkle-pink)" />
-        <FlavorSection eyebrow="Buttercream Icing" note="Italian buttercream base, whipped to order." flavors={FLAVORS.buttercream} accentColor="var(--sprinkle-blue)" />
-        <FlavorSection eyebrow="Premium Fillings" note="Inside the cake only — additional charge." flavors={FLAVORS.fillings} variant="cream" accentColor="var(--sprinkle-green)" />
-        <FlavorSection eyebrow="Fondant" note="For sculpted cakes and crisp tier finishes." flavors={FLAVORS.fondant} accentColor="var(--sprinkle-coral)" />
-        <FlavorSection eyebrow="Dietary" note="Vegan and gluten-free options — additional charge applies." flavors={FLAVORS.dietary} accentColor="var(--sprinkle-turquoise)" />
+        <FlavorSection eyebrow="Cake — Standard" note="Included with every order." flavors={FLAVORS.cakeStandard} />
+        <FlavorSection eyebrow="Cake — Premium" note="Small additional charge per serving." flavors={FLAVORS.cakePremium} variant="premium" />
+        <FlavorSection eyebrow="Buttercream Icing" note="Italian buttercream base, whipped to order." flavors={FLAVORS.buttercream} />
+        <FlavorSection eyebrow="Premium Fillings" note="Inside the cake only — additional charge." flavors={FLAVORS.fillings} variant="cream" />
+        <FlavorSection eyebrow="Fondant" note="For sculpted cakes and crisp tier finishes." flavors={FLAVORS.fondant} />
+        <FlavorSection eyebrow="Dietary" note="Vegan and gluten-free options — additional charge applies." flavors={FLAVORS.dietary} />
         <HelpCard />
       </section>
 
       <ClosingCTA />
-    </>
+    </div>
   )
 }
 
-function FlavorSection({ eyebrow, note, flavors, variant, accentColor = 'var(--color-gold)' }) {
+function FlavorSection({ eyebrow, note, flavors, variant }) {
+  const accentColor = 'var(--sprinkle-yellow)'
   const ref = useScrollReveal({ y: 24 })
-  const bg = variant === 'cream'
-    ? 'var(--color-cream-soft)'
-    : variant === 'premium'
-    ? 'var(--color-blush-soft)'
-    : 'transparent'
+  const bg = variant ? 'var(--sprinkle-yellow-tint)' : 'transparent'
 
   return (
     <div ref={ref} style={{ padding: '32px 0', borderTop: '1px solid var(--color-hairline)' }}>
@@ -102,7 +100,7 @@ function HelpCard() {
   return (
     <div ref={ref} style={{
       marginTop: 64,
-      background: 'linear-gradient(135deg, #FFEFC9, #FFF8E7)',
+      background: 'var(--sprinkle-yellow-tint)',
       borderRadius: 16,
       padding: '32px 40px',
       display: 'grid',

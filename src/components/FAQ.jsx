@@ -4,15 +4,7 @@ import { IconPlus, IconMinus, IconHelp } from './Icons'
 import { LavenderButton } from './Buttons'
 import { FAQS } from '@/data'
 
-const ITEM_TINTS = [
-  'var(--sprinkle-pink-tint)',
-  'var(--sprinkle-yellow-tint)',
-  'var(--sprinkle-coral-tint)',
-  'var(--sprinkle-green-tint)',
-  'var(--sprinkle-turquoise-tint)',
-]
-
-export function FAQAccordion({ items = FAQS }) {
+export function FAQAccordion({ items = FAQS, tint = 'var(--sprinkle-blue-tint)' }) {
   const [open, setOpen] = useState(0)
 
   return (
@@ -23,7 +15,7 @@ export function FAQAccordion({ items = FAQS }) {
           item={it}
           isOpen={open === i}
           onToggle={() => setOpen(open === i ? -1 : i)}
-          bg={ITEM_TINTS[i % ITEM_TINTS.length]}
+          bg={tint}
         />
       ))}
     </div>
@@ -52,7 +44,7 @@ function FAQItem({ item, isOpen, onToggle, bg = 'var(--color-cream-soft)' }) {
       borderRadius: 16,
       padding: '20px 24px',
       cursor: 'pointer',
-      border: `1px solid ${isOpen ? 'rgba(46,196,198,.35)' : 'transparent'}`,
+      border: `1px solid ${isOpen ? 'rgba(79,163,217,.4)' : 'transparent'}`,
       transition: 'border-color 200ms ease',
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
@@ -83,10 +75,10 @@ function FAQItem({ item, isOpen, onToggle, bg = 'var(--color-cream-soft)' }) {
   )
 }
 
-export function FAQHelpCard({ href = '/contact' }) {
+export function FAQHelpCard({ href = '/contact', tint = 'var(--sprinkle-blue-tint)', accent = 'var(--sprinkle-blue)' }) {
   return (
     <div style={{
-      background: 'var(--sprinkle-coral-tint)',
+      background: tint,
       borderRadius: 16,
       padding: 28,
       display: 'flex',
@@ -99,7 +91,7 @@ export function FAQHelpCard({ href = '/contact' }) {
         width: 44, height: 44, borderRadius: '50%',
         background: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: 'var(--sprinkle-yellow)',
+        color: accent,
       }}>
         <IconHelp size={22} />
       </div>

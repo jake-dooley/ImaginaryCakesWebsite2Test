@@ -67,6 +67,7 @@ export default function GalleryGrid() {
           <button
             key={c.key}
             onClick={() => handleFilter(c.key)}
+            className={`gallery-chip${filter === c.key ? ' gallery-chip--active' : ''}`}
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 12,
@@ -104,6 +105,10 @@ export default function GalleryGrid() {
       </div>
 
       <style>{`
+        .gallery-chip:not(.gallery-chip--active):hover {
+          border-color: var(--page-accent, var(--color-border)) !important;
+          color: var(--page-accent, var(--color-ink)) !important;
+        }
         @media (max-width: 1024px) {
           .gallery-grid-wrap { grid-template-columns: repeat(3, 1fr) !important; }
         }

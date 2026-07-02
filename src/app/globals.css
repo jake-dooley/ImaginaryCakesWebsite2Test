@@ -32,7 +32,6 @@
   --sprinkle-yellow:    #F5B942;
   --sprinkle-green:     #8BC34A;
   --sprinkle-blue:      #4FA3D9;
-  --sprinkle-coral:     #FF7A5C;
 
   /* Sprinkle pastel tints (for backgrounds) */
   --sprinkle-pink-tint:      #FDEAF1;
@@ -40,7 +39,6 @@
   --sprinkle-yellow-tint:    #FDF3E0;
   --sprinkle-green-tint:     #EEF6E4;
   --sprinkle-blue-tint:      #EAF4FB;
-  --sprinkle-coral-tint:     #FFEEE9;
 
   /* Fonts (Playfair Display = headings, Lato = body per CLAUDE.md) */
   --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;

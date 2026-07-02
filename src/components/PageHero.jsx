@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import { Eyebrow, OrnamentRule } from './SectionIntro'
 
-export default function PageHero({ eyebrow, title, titleItalicPart, sub, children }) {
+export default function PageHero({ eyebrow, title, titleItalicPart, sub, children, accentColor = 'var(--page-accent, var(--color-ink))' }) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function PageHero({ eyebrow, title, titleItalicPart, sub, childre
   return (
     <section ref={ref} style={{ padding: '72px 40px 56px', textAlign: 'center', maxWidth: 1080, margin: '0 auto' }}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      {eyebrow && <OrnamentRule color="var(--sprinkle-pink)" />}
+      {eyebrow && <OrnamentRule color={accentColor} />}
       {title && (
         <h1 style={{
           fontFamily: 'var(--font-display)',
