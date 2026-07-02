@@ -16,21 +16,21 @@ export const Eyebrow = ({ children, align = 'center', style }) => (
   </div>
 )
 
-export const OrnamentRule = ({ align = 'center', style }) => (
+export const OrnamentRule = ({ align = 'center', style, color }) => (
   <div
     className={align === 'left' ? 'ornament ornament--left' : 'ornament'}
-    style={style}
+    style={{ '--diamond-color': color, ...style }}
   >
     <div className="diamond" />
   </div>
 )
 
-export const SectionIntro = ({ eyebrow, title, titleItalicPart, sub, align = 'center' }) => {
+export const SectionIntro = ({ eyebrow, title, titleItalicPart, sub, align = 'center', accentColor }) => {
   const ref = useScrollReveal({ y: 30 })
   return (
     <div ref={ref} style={{ textAlign: align, marginBottom: 48 }}>
       {eyebrow && <Eyebrow align={align}>{eyebrow}</Eyebrow>}
-      {eyebrow && <OrnamentRule align={align} />}
+      {eyebrow && <OrnamentRule align={align} color={accentColor} />}
       {title && (
         <h2 style={{
           fontFamily: 'var(--font-display)',

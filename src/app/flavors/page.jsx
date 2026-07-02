@@ -18,12 +18,12 @@ export default function FlavorsPage() {
       />
 
       <section style={{ maxWidth: 1080, margin: '0 auto', padding: '8px 40px 96px' }}>
-        <FlavorSection eyebrow="Cake — Standard" note="Included with every order." flavors={FLAVORS.cakeStandard} />
-        <FlavorSection eyebrow="Cake — Premium" note="Small additional charge per serving." flavors={FLAVORS.cakePremium} variant="premium" />
-        <FlavorSection eyebrow="Buttercream Icing" note="Italian buttercream base, whipped to order." flavors={FLAVORS.buttercream} />
-        <FlavorSection eyebrow="Premium Fillings" note="Inside the cake only — additional charge." flavors={FLAVORS.fillings} variant="cream" />
-        <FlavorSection eyebrow="Fondant" note="For sculpted cakes and crisp tier finishes." flavors={FLAVORS.fondant} />
-        <FlavorSection eyebrow="Dietary" note="Vegan and gluten-free options — additional charge applies." flavors={FLAVORS.dietary} />
+        <FlavorSection eyebrow="Cake — Standard" note="Included with every order." flavors={FLAVORS.cakeStandard} accentColor="var(--sprinkle-yellow)" />
+        <FlavorSection eyebrow="Cake — Premium" note="Small additional charge per serving." flavors={FLAVORS.cakePremium} variant="premium" accentColor="var(--sprinkle-pink)" />
+        <FlavorSection eyebrow="Buttercream Icing" note="Italian buttercream base, whipped to order." flavors={FLAVORS.buttercream} accentColor="var(--sprinkle-blue)" />
+        <FlavorSection eyebrow="Premium Fillings" note="Inside the cake only — additional charge." flavors={FLAVORS.fillings} variant="cream" accentColor="var(--sprinkle-green)" />
+        <FlavorSection eyebrow="Fondant" note="For sculpted cakes and crisp tier finishes." flavors={FLAVORS.fondant} accentColor="var(--sprinkle-coral)" />
+        <FlavorSection eyebrow="Dietary" note="Vegan and gluten-free options — additional charge applies." flavors={FLAVORS.dietary} accentColor="var(--sprinkle-turquoise)" />
         <HelpCard />
       </section>
 
@@ -32,7 +32,7 @@ export default function FlavorsPage() {
   )
 }
 
-function FlavorSection({ eyebrow, note, flavors, variant }) {
+function FlavorSection({ eyebrow, note, flavors, variant, accentColor = 'var(--color-gold)' }) {
   const ref = useScrollReveal({ y: 24 })
   const bg = variant === 'cream'
     ? 'var(--color-cream-soft)'
@@ -77,9 +77,9 @@ function FlavorSection({ eyebrow, note, flavors, variant }) {
                 alignItems: 'baseline',
               }}>
                 <span style={{
-                  width: 5, height: 5, border: '1px solid var(--color-gold)',
+                  width: 5, height: 5, border: `1px solid ${accentColor}`,
                   transform: 'rotate(45deg)', flexShrink: 0, marginTop: 6,
-                  background: 'var(--color-gold)', opacity: 0.7,
+                  background: accentColor, opacity: 0.7,
                 }} />
                 <span>{f}</span>
               </li>
@@ -115,7 +115,7 @@ function HelpCard() {
         width: 64, height: 64, borderRadius: '50%',
         background: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: 'var(--color-ink)',
+        color: 'var(--sprinkle-yellow)',
       }}>
         <IconHelp size={28} />
       </div>

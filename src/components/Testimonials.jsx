@@ -3,6 +3,23 @@ import { useState, useRef, useCallback } from 'react'
 import { IconChevronLeft, IconChevronRight } from './Icons'
 import { REVIEWS } from '@/data'
 
+const CARD_TINTS = [
+  'var(--sprinkle-pink-tint)',
+  'var(--sprinkle-yellow-tint)',
+  'var(--sprinkle-blue-tint)',
+  'var(--sprinkle-green-tint)',
+  'var(--sprinkle-turquoise-tint)',
+  'var(--sprinkle-coral-tint)',
+]
+const CARD_BOLDS = [
+  'var(--sprinkle-pink)',
+  'var(--sprinkle-yellow)',
+  'var(--sprinkle-blue)',
+  'var(--sprinkle-green)',
+  'var(--sprinkle-turquoise)',
+  'var(--sprinkle-coral)',
+]
+
 export default function TestimonialCarousel({ reviews = REVIEWS }) {
   const [idx, setIdx] = useState(0)
   const trackRef = useRef(null)
@@ -30,7 +47,7 @@ export default function TestimonialCarousel({ reviews = REVIEWS }) {
       <ArrowBtn onClick={prev} dir="left" />
 
       <div ref={trackRef} style={{
-        background: '#fff',
+        background: CARD_TINTS[idx % CARD_TINTS.length],
         borderRadius: 20,
         padding: 48,
         textAlign: 'center',
@@ -41,11 +58,11 @@ export default function TestimonialCarousel({ reviews = REVIEWS }) {
         {/* Avatar */}
         <div style={{
           width: 64, height: 64, borderRadius: '50%',
-          background: 'var(--color-cream-deep)',
+          background: CARD_BOLDS[idx % CARD_BOLDS.length],
           margin: '0 auto 14px',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 500,
-          color: 'var(--color-ink)',
+          color: '#fff',
         }}>
           {r.initials}
         </div>
@@ -86,7 +103,7 @@ export default function TestimonialCarousel({ reviews = REVIEWS }) {
                 width: i === idx ? 20 : 8,
                 height: 8,
                 borderRadius: 9999,
-                background: i === idx ? 'var(--color-gold)' : 'var(--color-hairline)',
+                background: i === idx ? CARD_BOLDS[idx % CARD_BOLDS.length] : 'var(--color-hairline)',
                 border: 'none',
                 cursor: 'pointer',
                 padding: 0,

@@ -4,6 +4,14 @@ import { IconPlus, IconMinus, IconHelp } from './Icons'
 import { LavenderButton } from './Buttons'
 import { FAQS } from '@/data'
 
+const ITEM_TINTS = [
+  'var(--sprinkle-pink-tint)',
+  'var(--sprinkle-yellow-tint)',
+  'var(--sprinkle-coral-tint)',
+  'var(--sprinkle-green-tint)',
+  'var(--sprinkle-turquoise-tint)',
+]
+
 export function FAQAccordion({ items = FAQS }) {
   const [open, setOpen] = useState(0)
 
@@ -15,13 +23,14 @@ export function FAQAccordion({ items = FAQS }) {
           item={it}
           isOpen={open === i}
           onToggle={() => setOpen(open === i ? -1 : i)}
+          bg={ITEM_TINTS[i % ITEM_TINTS.length]}
         />
       ))}
     </div>
   )
 }
 
-function FAQItem({ item, isOpen, onToggle }) {
+function FAQItem({ item, isOpen, onToggle, bg = 'var(--color-cream-soft)' }) {
   const bodyRef = useRef(null)
 
   useEffect(() => {
@@ -39,11 +48,11 @@ function FAQItem({ item, isOpen, onToggle }) {
 
   return (
     <div onClick={onToggle} style={{
-      background: 'var(--color-cream-soft)',
+      background: bg,
       borderRadius: 16,
       padding: '20px 24px',
       cursor: 'pointer',
-      border: `1px solid ${isOpen ? 'rgba(201,168,76,.3)' : 'transparent'}`,
+      border: `1px solid ${isOpen ? 'rgba(46,196,198,.35)' : 'transparent'}`,
       transition: 'border-color 200ms ease',
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
@@ -77,7 +86,7 @@ function FAQItem({ item, isOpen, onToggle }) {
 export function FAQHelpCard({ href = '/contact' }) {
   return (
     <div style={{
-      background: 'linear-gradient(135deg, #FFEFC9, #FFF8E7)',
+      background: 'var(--sprinkle-coral-tint)',
       borderRadius: 16,
       padding: 28,
       display: 'flex',
@@ -90,7 +99,7 @@ export function FAQHelpCard({ href = '/contact' }) {
         width: 44, height: 44, borderRadius: '50%',
         background: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: 'var(--color-ink)',
+        color: 'var(--sprinkle-yellow)',
       }}>
         <IconHelp size={22} />
       </div>

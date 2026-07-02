@@ -247,20 +247,20 @@ function ContactSection() {
 
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
-          <InfoLine icon={<IconClock size={18} />} title="Hours">
+          <InfoLine icon={<IconClock size={18} />} title="Hours" iconColor="var(--sprinkle-turquoise)">
             {BUSINESS.hours}<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>{BUSINESS.hoursNote}</span>
           </InfoLine>
-          <InfoLine icon={<IconPhone size={18} />} title="Phone">{BUSINESS.phone}</InfoLine>
-          <InfoLine icon={<IconMail size={18} />} title="Email">{BUSINESS.email}</InfoLine>
+          <InfoLine icon={<IconPhone size={18} />} title="Phone" iconColor="var(--sprinkle-green)">{BUSINESS.phone}</InfoLine>
+          <InfoLine icon={<IconMail size={18} />} title="Email" iconColor="var(--sprinkle-blue)">{BUSINESS.email}</InfoLine>
 
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
-          <InfoLine icon={<IconInstagram size={18} />} title="Instagram">
+          <InfoLine icon={<IconInstagram size={18} />} title="Instagram" iconColor="var(--sprinkle-pink)">
             @imaginarycakes<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>3,600+ followers</span>
           </InfoLine>
-          <InfoLine icon={<IconFacebook size={18} />} title="Facebook">
+          <InfoLine icon={<IconFacebook size={18} />} title="Facebook" iconColor="var(--sprinkle-coral)">
             facebook.com/imaginarycakes<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>98% recommend</span>
           </InfoLine>
@@ -312,10 +312,10 @@ function Field({ label, children }) {
   )
 }
 
-function InfoLine({ icon, title, children }) {
+function InfoLine({ icon, title, children, iconColor = 'var(--color-gold)' }) {
   return (
     <div style={{ display: 'flex', gap: 14 }}>
-      <div style={{ color: 'var(--color-gold)', marginTop: 2, flexShrink: 0 }}>{icon}</div>
+      <div style={{ color: iconColor, marginTop: 2, flexShrink: 0 }}>{icon}</div>
       <div>
         <div style={{ fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-muted)' }}>
           {title}
