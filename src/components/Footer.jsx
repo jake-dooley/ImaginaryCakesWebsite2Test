@@ -13,7 +13,7 @@ export default function Footer() {
         }}>
           {/* Brand */}
           <div>
-            <img src="/assets/Imaginary_cakes_Logo_final.png" alt="Imaginary Cakes logo" style={{ height: 80, width: 'auto' }} />
+            <img src="/assets/logo.png" alt="Imaginary Cakes" style={{ height: 80 }} />
             <p style={{ marginTop: 18, fontStyle: 'italic', color: 'var(--color-body)', fontSize: 16, maxWidth: 360 }}>
               "{BUSINESS.tagline}"
             </p>
