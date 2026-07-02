@@ -277,7 +277,7 @@ function ContactSection() {
             color: 'var(--color-body)',
             lineHeight: 1.55,
           }}>
-            All orders require a <strong style={{ fontStyle: 'normal', color: 'var(--color-ink)' }}>minimum of two weeks</strong> lead time. Wedding cakes book up 6–8 weeks ahead during peak season (April – October).
+            All orders require 24-48 hour lead time
           </div>
         </aside>
       </div>

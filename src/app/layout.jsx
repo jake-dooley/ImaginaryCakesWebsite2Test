@@ -20,7 +20,7 @@ const lato = Lato({
 
 export const metadata = {
   title: 'Imaginary Cakes — Custom Cakes, Wilmington NC',
-  description: 'Handcrafted custom cakes for weddings, birthdays, and every sweet occasion. Husband-and-wife bakery in Wilmington, NC since 2009.',
+  description: 'Handcrafted custom cakes for weddings, birthdays, and every sweet occasion. Mother-daughter bakery in Wilmington, NC since 2009.',
 }
 
 export default function RootLayout({ children }) {

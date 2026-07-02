@@ -18,7 +18,7 @@ export default function Footer() {
               "{BUSINESS.tagline}"
             </p>
             <p style={{ marginTop: 12, fontSize: 14, color: 'var(--color-muted)' }}>
-              Husband-and-wife custom cake bakery in Wilmington, NC. Established {BUSINESS.established}.
+              Mother-daughter custom cake bakery in Wilmington, NC. Established {BUSINESS.established}.
             </p>
           </div>
 
