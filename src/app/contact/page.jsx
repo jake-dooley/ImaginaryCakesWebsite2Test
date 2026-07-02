@@ -27,6 +27,12 @@ export default function ContactPage() {
 
 const SELECT_ARROW = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><polyline points='1,1 6,6 11,1' stroke='%232C1810' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>")`
 
+const MAX_TOTAL_UPLOAD_BYTES = 10 * 1024 * 1024 // 10MB combined
+
+function formatMB(bytes) {
+  return (bytes / (1024 * 1024)).toFixed(1)
+}
+
 function ContactSection() {
   const formRef = useRef(null)
   const infoRef = useRef(null)
@@ -39,7 +45,37 @@ function ContactSection() {
     guests: '', cakeType: 'Weddings', fulfillment: '', message: '',
   })
 
+  const [photos, setPhotos] = useState([])
+  const [photoError, setPhotoError] = useState(null)
+  const [dragOver, setDragOver] = useState(false)
+  const fileInputRef = useRef(null)
+
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+
+  const addPhotos = (fileList) => {
+    const incoming = Array.from(fileList)
+    const nonImages = incoming.filter((f) => !f.type.startsWith('image/'))
+    const images = incoming.filter((f) => f.type.startsWith('image/'))
+
+    if (nonImages.length) {
+      const names = nonImages.map((f) => f.name).join(', ')
+      setPhotoError(`${names} — only image files (JPG, PNG, HEIC, etc.) can be uploaded.`)
+    } else {
+      setPhotoError(null)
+    }
+
+    if (!images.length) return
+
+    const combined = [...photos, ...images]
+    const totalBytes = combined.reduce((sum, f) => sum + f.size, 0)
+    if (totalBytes > MAX_TOTAL_UPLOAD_BYTES) {
+      setPhotoError(`These photos total ${formatMB(totalBytes)}MB, which is over the 10MB limit. Please remove a photo or choose smaller files.`)
+      return
+    }
+    setPhotos(combined)
+  }
+
+  const removePhoto = (index) => setPhotos(photos.filter((_, i) => i !== index))
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -48,12 +84,15 @@ function ContactSection() {
     try {
       const formData = new FormData()
       Object.entries(form).forEach(([k, v]) => formData.append(k, v))
+      photos.forEach((file) => formData.append('attachment', file))
       formData.append('access_key', '7fc6669b-4903-42b5-a343-ecebbda3c330')
       const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
       const data = await response.json()
       if (response.ok) {
         setSubmitted(true)
         setForm({ name: '', email: '', phone: '', eventDate: '', guests: '', cakeType: 'Weddings', fulfillment: '', message: '' })
+        setPhotos([])
+        setPhotoError(null)
       } else {
         setError(data.message || 'Submission failed. Please try again.')
       }
@@ -216,6 +255,105 @@ function ContactSection() {
                 style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
               />
             </Field>
+          </div>
+
+          <div className="form-field" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <span style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: 'var(--color-muted)',
+            }}>
+              Upload Inspiration Photos (optional)
+            </span>
+
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={(e) => { e.preventDefault(); setDragOver(false); addPhotos(e.dataTransfer.files) }}
+              style={{
+                border: `1.5px dashed ${dragOver ? 'var(--color-gold)' : 'var(--color-hairline)'}`,
+                borderRadius: 10,
+                padding: '28px 16px',
+                textAlign: 'center',
+                cursor: 'pointer',
+                background: dragOver ? 'rgba(201,168,76,.08)' : 'var(--color-cream-soft)',
+                transition: 'border-color 180ms ease, background 180ms ease',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 15V4M12 4l-4 4M12 4l4 4" />
+                <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+              </svg>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 15, color: 'var(--color-ink)' }}>
+                Click to upload or drag and drop
+              </span>
+              <span style={{ fontFamily: 'var(--font-ui)', fontSize: 12, color: 'var(--color-muted)' }}>
+                Images only, up to 10MB total
+              </span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                style={{ display: 'none' }}
+                onChange={(e) => { addPhotos(e.target.files); e.target.value = null }}
+              />
+            </div>
+
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: 13, color: 'var(--color-muted)', lineHeight: 1.5 }}>
+              Share any photos of cakes or designs you love — this helps us bring your vision to life.
+            </span>
+
+            {photoError && (
+              <span style={{ fontFamily: 'var(--font-ui)', fontSize: 13, color: 'var(--color-error)' }}>
+                {photoError}
+              </span>
+            )}
+
+            {photos.length > 0 && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {photos.map((file, i) => (
+                  <span key={`${file.name}-${i}`} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    fontFamily: 'var(--font-ui)',
+                    fontSize: 12,
+                    color: 'var(--color-body)',
+                    background: 'var(--color-cream-soft)',
+                    border: '1px solid var(--color-hairline)',
+                    borderRadius: 999,
+                    padding: '5px 10px',
+                  }}>
+                    {file.name} ({formatMB(file.size)}MB)
+                    <button
+                      type="button"
+                      onClick={() => removePhoto(i)}
+                      aria-label={`Remove ${file.name}`}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: 'var(--color-muted)',
+                        fontSize: 14,
+                        lineHeight: 1,
+                        padding: 0,
+                      }}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="form-field" style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
