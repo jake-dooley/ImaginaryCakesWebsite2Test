@@ -31,7 +31,7 @@ export const ArchFrame = ({ src, width = 360, height = 480, style }) => {
       height,
       borderRadius: `${width / 1.8}px ${width / 1.8}px 16px 16px`,
       overflow: 'hidden',
-      background: 'var(--color-cream-deep)',
+      background: 'rgba(255,255,255,0.25)',
       position: 'relative',
       boxShadow: 'var(--shadow-lift)',
       ...style,
@@ -79,7 +79,7 @@ export const OvalFrame = ({ src, width = 220, height = 320, label, sub, style })
         height,
         borderRadius: 9999,
         overflow: 'hidden',
-        background: 'var(--color-cream-deep)',
+        background: 'rgba(255,255,255,0.25)',
       }}>
         {src && (
           <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

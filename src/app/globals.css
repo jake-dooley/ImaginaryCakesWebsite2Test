@@ -107,7 +107,8 @@ img { max-width: 100%; display: block; }
 .ornament::after {
   content: '';
   height: 1px;
-  background: var(--color-border);
+  background: var(--diamond-color, var(--color-border));
+  opacity: 0.6;
   flex: 1;
 }
 .ornament--left { margin-left: 0; justify-content: flex-start; }

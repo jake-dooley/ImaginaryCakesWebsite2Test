@@ -45,7 +45,7 @@ export default function StatsSection() {
   }, [])
 
   return (
-    <section ref={ref} style={{ background: 'var(--color-cream-deep)', padding: '72px 48px' }}>
+    <section ref={ref} style={{ background: '#fff', padding: '72px 48px' }}>
       <div style={{
         maxWidth: 1080, margin: '0 auto',
         display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',

@@ -106,8 +106,8 @@ export default function GalleryGrid() {
 
       <style>{`
         .gallery-chip:not(.gallery-chip--active):hover {
-          border-color: var(--page-accent, var(--color-border)) !important;
-          color: var(--page-accent, var(--color-ink)) !important;
+          border-color: rgba(255,255,255,0.8) !important;
+          color: #fff !important;
         }
         @media (max-width: 1024px) {
           .gallery-grid-wrap { grid-template-columns: repeat(3, 1fr) !important; }
@@ -132,7 +132,7 @@ function GalleryTile({ cake, tall }) {
         aspectRatio: tall ? '3 / 4' : '1 / 1',
         borderRadius: 16,
         overflow: 'hidden',
-        background: 'var(--color-cream-deep)',
+        background: 'rgba(255,255,255,0.2)',
         cursor: 'pointer',
         transform: hover ? 'scale(1.02)' : 'scale(1)',
         transition: 'transform 300ms ease',

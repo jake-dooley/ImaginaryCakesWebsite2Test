@@ -4,6 +4,8 @@ export default function Marquee({ items, color = 'gold' }) {
   const repeated = [...items, ...items, ...items, ...items, ...items, ...items]
   const bg = color === 'gold'
     ? 'var(--gradient-gold)'
+    : color === 'white'
+    ? '#fff'
     : 'linear-gradient(135deg, #F9E4E4, #F0C8C8, #F9E4E4)'
   const textColor = color === 'gold' ? 'var(--color-ink)' : 'var(--color-ink)'
 

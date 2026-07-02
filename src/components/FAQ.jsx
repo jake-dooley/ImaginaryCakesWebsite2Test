@@ -4,7 +4,7 @@ import { IconPlus, IconMinus, IconHelp } from './Icons'
 import { LavenderButton } from './Buttons'
 import { FAQS } from '@/data'
 
-export function FAQAccordion({ items = FAQS, tint = 'var(--sprinkle-blue-tint)' }) {
+export function FAQAccordion({ items = FAQS, tint = '#fff' }) {
   const [open, setOpen] = useState(0)
 
   return (
@@ -22,7 +22,7 @@ export function FAQAccordion({ items = FAQS, tint = 'var(--sprinkle-blue-tint)' 
   )
 }
 
-function FAQItem({ item, isOpen, onToggle, bg = 'var(--color-cream-soft)' }) {
+function FAQItem({ item, isOpen, onToggle, bg = '#fff' }) {
   const bodyRef = useRef(null)
 
   useEffect(() => {
@@ -75,10 +75,10 @@ function FAQItem({ item, isOpen, onToggle, bg = 'var(--color-cream-soft)' }) {
   )
 }
 
-export function FAQHelpCard({ href = '/contact', tint = 'var(--sprinkle-blue-tint)', accent = 'var(--sprinkle-blue)' }) {
+export function FAQHelpCard({ href = '/contact', tint = '#fff', accent = 'var(--sprinkle-blue)' }) {
   return (
     <div style={{
-      background: tint,
+      background: '#fff',
       borderRadius: 16,
       padding: 28,
       display: 'flex',

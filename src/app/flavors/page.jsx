@@ -9,13 +9,13 @@ import { FLAVORS } from '@/data'
 
 export default function FlavorsPage() {
   return (
-    <div style={{ '--page-accent': 'var(--sprinkle-yellow)' }}>
+    <div style={{ '--page-accent': 'var(--sprinkle-yellow)', background: 'var(--sprinkle-yellow)' }}>
       <PageHero
         eyebrow="The Flavor Menu"
         title="Pick a Cake,"
         titleItalicPart="Then Build a Flavor."
         sub="Every order starts with a cake flavor, an icing, and (optionally) a filling. Mix and match — there are over a thousand combinations on this page alone."
-        accentColor="var(--sprinkle-yellow)"
+        accentColor="#fff"
       />
 
       <section style={{ maxWidth: 1080, margin: '0 auto', padding: '8px 40px 96px' }}>
@@ -36,7 +36,7 @@ export default function FlavorsPage() {
 function FlavorSection({ eyebrow, note, flavors, variant }) {
   const accentColor = 'var(--sprinkle-yellow)'
   const ref = useScrollReveal({ y: 24 })
-  const bg = variant ? 'var(--sprinkle-yellow-tint)' : 'transparent'
+  const bg = variant ? '#fff' : 'transparent'
 
   return (
     <div ref={ref} style={{ padding: '32px 0', borderTop: '1px solid var(--color-hairline)' }}>
@@ -100,7 +100,7 @@ function HelpCard() {
   return (
     <div ref={ref} style={{
       marginTop: 64,
-      background: 'var(--sprinkle-yellow-tint)',
+      background: '#fff',
       borderRadius: 16,
       padding: '32px 40px',
       display: 'grid',

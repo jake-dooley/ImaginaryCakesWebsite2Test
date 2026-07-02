@@ -7,7 +7,7 @@ export default function ClosingCTA() {
   const ref = useScrollReveal({ y: 30 })
   return (
     <section style={{
-      background: 'linear-gradient(135deg, #F9E4E4 0%, #FAF6F1 40%, #F0E8D8 100%)',
+      background: 'transparent',
       padding: '80px 40px',
       position: 'relative',
       overflow: 'hidden',

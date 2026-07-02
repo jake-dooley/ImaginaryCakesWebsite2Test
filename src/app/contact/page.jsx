@@ -10,16 +10,16 @@ import { CATEGORIES, BUSINESS } from '@/data'
 
 export default function ContactPage() {
   return (
-    <div style={{ '--page-accent': 'var(--sprinkle-green)' }}>
+    <div style={{ '--page-accent': 'var(--sprinkle-green)', background: 'var(--sprinkle-green)' }}>
       <PageHero
         eyebrow="Contact Us"
         title="Tell Us About"
         titleItalicPart="Your Sweet Moment."
         sub="Every cake starts with a conversation. Drop us a note with your event date, guest count, and any inspiration — we'll be back within one business day."
-        accentColor="var(--sprinkle-green)"
+        accentColor="#fff"
       />
       <ContactSection />
-      <Marquee items={['Cakes So Good', "They Can't Be Real", 'Booking Spring 2026']} color="blush" />
+      <Marquee items={['Cakes So Good', "They Can't Be Real", 'Booking Spring 2026']} color="white" />
       <ClosingCTA />
     </div>
   )
@@ -97,7 +97,7 @@ function ContactSection() {
     fontFamily: 'var(--font-display)',
     fontSize: 17,
     color: 'var(--color-ink)',
-    background: 'var(--color-cream-soft)',
+    background: '#fff',
     border: '1px solid var(--color-hairline)',
     borderRadius: 10,
     padding: '14px 16px',
@@ -134,7 +134,7 @@ function ContactSection() {
 
           {submitted && (
             <div style={{
-              background: 'var(--color-cream-soft)',
+              background: '#fff',
               border: '1px solid rgba(90,128,96,.4)',
               borderRadius: 12,
               padding: '14px 18px',
@@ -228,7 +228,7 @@ function ContactSection() {
 
         {/* Info card */}
         <aside ref={infoRef} style={{
-          background: 'var(--sprinkle-green-tint)',
+          background: '#fff',
           borderRadius: 16,
           padding: 32,
           display: 'flex',
@@ -269,7 +269,7 @@ function ContactSection() {
           <div style={{ height: 1, background: 'var(--color-hairline)' }} />
 
           <div style={{
-            background: 'var(--sprinkle-green-tint)',
+            background: '#fff',
             borderRadius: 12,
             padding: 16,
             fontFamily: 'var(--font-display)',

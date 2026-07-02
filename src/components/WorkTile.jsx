@@ -13,7 +13,7 @@ export function WorkTile({ cake }) {
         borderRadius: 16,
         overflow: 'hidden',
         cursor: 'pointer',
-        background: 'var(--color-cream-deep)',
+        background: 'rgba(255,255,255,0.25)',
         transform: hover ? 'scale(1.02)' : 'scale(1)',
         transition: 'transform 320ms ease',
       }}

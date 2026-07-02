@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from 'react'
 import { IconChevronLeft, IconChevronRight } from './Icons'
 import { REVIEWS } from '@/data'
 
-export default function TestimonialCarousel({ reviews = REVIEWS, tint = 'var(--sprinkle-blue-tint)', accent = 'var(--sprinkle-blue)' }) {
+export default function TestimonialCarousel({ reviews = REVIEWS, tint = '#fff', accent = 'var(--sprinkle-blue)' }) {
   const [idx, setIdx] = useState(0)
   const trackRef = useRef(null)
 
@@ -30,7 +30,7 @@ export default function TestimonialCarousel({ reviews = REVIEWS, tint = 'var(--s
       <ArrowBtn onClick={prev} dir="left" />
 
       <div ref={trackRef} style={{
-        background: tint,
+        background: '#fff',
         borderRadius: 20,
         padding: 48,
         textAlign: 'center',
@@ -113,7 +113,7 @@ function ArrowBtn({ onClick, dir }) {
       cursor: 'pointer', flexShrink: 0,
       transition: 'background 180ms ease, transform 180ms ease',
     }}
-    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-cream-deep)'; e.currentTarget.style.transform = 'scale(1.05)' }}
+    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'scale(1.05)' }}
     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'scale(1)' }}
     >
       {dir === 'left' ? <IconChevronLeft size={18} /> : <IconChevronRight size={18} />}
