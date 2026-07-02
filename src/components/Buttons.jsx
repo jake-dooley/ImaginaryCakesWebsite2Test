@@ -52,9 +52,9 @@ export const OutlineButton = ({ children, onClick, href, style, className }) => 
   const [hover, setHover] = useState(false)
   const sharedStyle = {
     ...BASE,
-    background: hover ? 'var(--color-ink)' : 'transparent',
+    background: hover ? 'var(--sprinkle-coral)' : 'transparent',
     color: hover ? '#fff' : 'var(--color-ink)',
-    border: '1.5px solid var(--color-ink)',
+    border: `1.5px solid ${hover ? 'var(--sprinkle-coral)' : 'var(--color-ink)'}`,
     padding: '12px 27px',
     transition: 'background 200ms ease, color 200ms ease',
     ...style,
