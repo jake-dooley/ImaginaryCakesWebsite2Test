@@ -135,14 +135,6 @@ function HeroSection() {
 
         {/* Visual */}
         <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
-          <div style={{
-            position: 'absolute', left: -28, top: 64,
-            transform: 'rotate(-90deg)', transformOrigin: 'left top',
-            fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 22,
-            color: 'var(--color-ink)', whiteSpace: 'nowrap', opacity: 0.6,
-          }}>
-            Indulge in <em style={{ fontWeight: 600 }}>Sweet Elegance</em>
-          </div>
           <ArchFrame
             src="https://static.wixstatic.com/media/af4445_3fb2b3e952fe4b3b8b9f9ff9d4500a8a~mv2.jpg/v1/fill/w_800,h_1067,q_90,enc_avif,quality_auto/af4445_3fb2b3e952fe4b3b8b9f9ff9d4500a8a~mv2.jpg"
             width={400} height={520}
