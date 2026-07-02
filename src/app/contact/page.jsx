@@ -275,12 +275,12 @@ function ContactSection() {
               onDragLeave={() => setDragOver(false)}
               onDrop={(e) => { e.preventDefault(); setDragOver(false); addPhotos(e.dataTransfer.files) }}
               style={{
-                border: `1.5px dashed ${dragOver ? 'var(--color-gold)' : 'var(--color-hairline)'}`,
+                border: `1.5px dashed ${dragOver ? 'var(--sprinkle-green)' : 'var(--color-hairline)'}`,
                 borderRadius: 10,
                 padding: '28px 16px',
                 textAlign: 'center',
                 cursor: 'pointer',
-                background: dragOver ? 'rgba(201,168,76,.08)' : 'var(--color-cream-soft)',
+                background: dragOver ? 'rgba(139,195,74,.08)' : '#fff',
                 transition: 'border-color 180ms ease, background 180ms ease',
                 display: 'flex',
                 flexDirection: 'column',
@@ -288,7 +288,7 @@ function ContactSection() {
                 gap: 8,
               }}
             >
-              <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="var(--sprinkle-green)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 15V4M12 4l-4 4M12 4l4 4" />
                 <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
               </svg>
