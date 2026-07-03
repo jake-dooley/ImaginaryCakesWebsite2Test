@@ -12,6 +12,7 @@ export default function StatsSection() {
   const ref = useRef(null)
 
   useEffect(() => {
+    let ctx
     let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
@@ -21,27 +22,32 @@ export default function StatsSection() {
       const el = ref.current
       if (!el) return
 
-      // Slide up the whole section
-      gsap.fromTo(el, { y: 40, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-      })
-
-      // Count-up for numeric stats
-      el.querySelectorAll('[data-counter]').forEach((counter) => {
-        const target = +counter.dataset.counter
-        const suffix = counter.dataset.suffix || ''
-        const obj = { val: 0 }
-        gsap.to(obj, {
-          val: target,
-          duration: 1.8,
-          ease: 'power1.out',
-          onUpdate() { counter.textContent = Math.round(obj.val).toLocaleString() + suffix },
+      ctx = gsap.context(() => {
+        // Slide up the whole section
+        gsap.fromTo(el, { y: 40, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        })
+
+        // Count-up for numeric stats
+        el.querySelectorAll('[data-counter]').forEach((counter) => {
+          const target = +counter.dataset.counter
+          const suffix = counter.dataset.suffix || ''
+          const obj = { val: 0 }
+          gsap.to(obj, {
+            val: target,
+            duration: 1.8,
+            ease: 'power1.out',
+            onUpdate() { counter.textContent = Math.round(obj.val).toLocaleString() + suffix },
+            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          })
         })
       })
     })()
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+      ctx?.revert()
+    }
   }, [])
 
   return (

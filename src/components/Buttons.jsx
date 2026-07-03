@@ -19,7 +19,7 @@ const BASE = {
   textDecoration: 'none',
 }
 
-// Gold gradient button — required for all buttons per CLAUDE.md
+// Gold gradient button — primary CTA style
 export const GoldButton = ({ children, onClick, href, style, className, type = 'button', disabled }) => {
   const [hover, setHover] = useState(false)
   const sharedStyle = {

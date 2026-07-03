@@ -1,5 +1,5 @@
 :root {
-  /* Brand colors (CLAUDE.md) */
+  /* Brand colors */
   --color-blush:        #F9E4E4;
   --color-blush-active: #F0C8C8;
   --color-blush-soft:   #FDF4F4;
@@ -40,7 +40,7 @@
   --sprinkle-green-tint:     #EEF6E4;
   --sprinkle-blue-tint:      #EAF4FB;
 
-  /* Fonts (Playfair Display = headings, Lato = body per CLAUDE.md) */
+  /* Fonts (Playfair Display = headings, Lato = body) */
   --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --font-ui:      var(--font-lato), 'Lato', -apple-system, system-ui, sans-serif;
 
@@ -65,7 +65,7 @@
   --shadow-card: rgba(44,24,16,.04) 0 0 0 1px, rgba(44,24,16,.04) 0 4px 12px 0, rgba(44,24,16,.06) 0 12px 24px -8px;
   --shadow-lift: rgba(44,24,16,.08) 0 16px 40px -12px;
 
-  /* Gold gradient (used on all buttons per CLAUDE.md) */
+  /* Gold gradient (used on all buttons) */
   --gradient-gold: linear-gradient(135deg, #C9A84C 0%, #E8D5A3 50%, #C9A84C 100%);
 }
 

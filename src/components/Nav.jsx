@@ -20,17 +20,25 @@ export default function Nav() {
   const navRef = useRef(null)
 
   useEffect(() => {
+    let trigger
+    let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled) return
       gsap.registerPlugin(ScrollTrigger)
 
-      ScrollTrigger.create({
+      trigger = ScrollTrigger.create({
         start: 'top -80',
         onEnter: () => setCompact(true),
         onLeaveBack: () => setCompact(false),
       })
     })()
+
+    return () => {
+      cancelled = true
+      trigger?.kill()
+    }
   }, [])
 
   useEffect(() => {
@@ -132,7 +140,7 @@ export default function Nav() {
       {mobileOpen && (
         <div style={{
           position: 'fixed',
-          top: 64,
+          top: compact ? 64 : 84,
           left: 0,
           right: 0,
           background: 'var(--color-cream)',

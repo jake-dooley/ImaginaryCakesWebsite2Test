@@ -18,7 +18,7 @@ export function WorkTile({ cake }) {
         transition: 'transform 320ms ease',
       }}
     >
-      <img src={cake.photo} alt={cake.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      <img src={cake.photo} alt={cake.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       <div style={{
         position: 'absolute', inset: 0,
         background: hover ? 'rgba(44,24,16,.52)' : 'rgba(44,24,16,0)',

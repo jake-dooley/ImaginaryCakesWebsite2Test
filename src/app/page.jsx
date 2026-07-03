@@ -161,37 +161,47 @@ function TraditionBand() {
   const textRef = useRef(null)
 
   useEffect(() => {
+    let ctx
+    let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled) return
       gsap.registerPlugin(ScrollTrigger)
 
-      // Parallax on the image
-      if (imgRef.current) {
-        gsap.to(imgRef.current, {
-          yPercent: -15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: imgRef.current.parentElement,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        })
-      }
+      ctx = gsap.context(() => {
+        // Parallax on the image
+        if (imgRef.current) {
+          gsap.to(imgRef.current, {
+            yPercent: -15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: imgRef.current.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          })
+        }
 
-      // Text reveal
-      if (textRef.current) {
-        gsap.fromTo(
-          textRef.current.children,
-          { y: 40, opacity: 0 },
-          {
-            y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power2.out',
-            scrollTrigger: { trigger: textRef.current, start: 'top 80%', toggleActions: 'play none none none' },
-          }
-        )
-      }
+        // Text reveal
+        if (textRef.current) {
+          gsap.fromTo(
+            textRef.current.children,
+            { y: 40, opacity: 0 },
+            {
+              y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power2.out',
+              scrollTrigger: { trigger: textRef.current, start: 'top 80%', toggleActions: 'play none none none' },
+            }
+          )
+        }
+      })
     })()
+
+    return () => {
+      cancelled = true
+      ctx?.revert()
+    }
   }, [])
 
   return (

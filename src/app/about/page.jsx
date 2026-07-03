@@ -32,20 +32,30 @@ function StorySection() {
   const textRef = useScrollReveal({ y: 40 })
 
   useEffect(() => {
+    let ctx
+    let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled) return
       gsap.registerPlugin(ScrollTrigger)
       if (!imgRef.current) return
-      gsap.fromTo(
-        imgRef.current,
-        { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
-        {
-          clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.1, ease: 'power3.out',
-          scrollTrigger: { trigger: imgRef.current, start: 'top 85%', toggleActions: 'play none none none' },
-        }
-      )
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          imgRef.current,
+          { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+          {
+            clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.1, ease: 'power3.out',
+            scrollTrigger: { trigger: imgRef.current, start: 'top 85%', toggleActions: 'play none none none' },
+          }
+        )
+      })
     })()
+
+    return () => {
+      cancelled = true
+      ctx?.revert()
+    }
   }, [])
 
   return (
@@ -68,7 +78,7 @@ function StorySection() {
             Imaginary Cakes is a mother-daughter bakery built on butter, patience, and a shared love of making people smile. Owner Caris Loomis brings years of hands-on baking experience and an eye for detail to every custom creation, while her daughter Addi adds fresh ideas and creative flair to keep things exciting.
           </p>
           <p style={{ marginTop: 14, fontFamily: 'var(--font-display)', fontSize: 17, lineHeight: 1.65 }}>
-            Together, they treat every cake like it's for their own family's celebration — because to them, your special day feels just like one.
+            Together, they treat every cake like it&apos;s for their own family&apos;s celebration — because to them, your special day feels just like one.
           </p>
           <div style={{ marginTop: 28 }}>
             <GoldButton href="/contact">Bring Us Your Idea</GoldButton>

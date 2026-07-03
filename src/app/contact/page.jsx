@@ -81,12 +81,18 @@ function ContactSection() {
     e.preventDefault()
     setSending(true)
     setError(null)
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
     try {
       const formData = new FormData()
       Object.entries(form).forEach(([k, v]) => formData.append(k, v))
       photos.forEach((file) => formData.append('attachment', file))
       formData.append('access_key', '5a62270f-af58-4e15-b653-62d06e482f07')
-      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal,
+      })
       const data = await response.json()
       if (response.ok) {
         setSubmitted(true)
@@ -96,40 +102,53 @@ function ContactSection() {
       } else {
         setError(data.message || 'Submission failed. Please try again.')
       }
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      setError(err.name === 'AbortError'
+        ? 'This is taking longer than expected. Please check your connection and try again.'
+        : 'Something went wrong. Please try again.')
     } finally {
+      clearTimeout(timeout)
       setSending(false)
     }
   }
 
   useEffect(() => {
+    let ctx
+    let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled) return
       gsap.registerPlugin(ScrollTrigger)
 
-      if (formRef.current) {
-        gsap.fromTo(
-          formRef.current.querySelectorAll('.form-field'),
-          { x: -30, opacity: 0 },
-          {
-            x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power2.out',
-            scrollTrigger: { trigger: formRef.current, start: 'top 85%', toggleActions: 'play none none none' },
-          }
-        )
-      }
-      if (infoRef.current) {
-        gsap.fromTo(
-          infoRef.current,
-          { x: 30, opacity: 0 },
-          {
-            x: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
-            scrollTrigger: { trigger: infoRef.current, start: 'top 85%', toggleActions: 'play none none none' },
-          }
-        )
-      }
+      ctx = gsap.context(() => {
+        if (formRef.current) {
+          gsap.fromTo(
+            formRef.current.querySelectorAll('.form-field'),
+            { x: -30, opacity: 0 },
+            {
+              x: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power2.out',
+              scrollTrigger: { trigger: formRef.current, start: 'top 85%', toggleActions: 'play none none none' },
+            }
+          )
+        }
+        if (infoRef.current) {
+          gsap.fromTo(
+            infoRef.current,
+            { x: 30, opacity: 0 },
+            {
+              x: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
+              scrollTrigger: { trigger: infoRef.current, start: 'top 85%', toggleActions: 'play none none none' },
+            }
+          )
+        }
+      })
     })()
+
+    return () => {
+      cancelled = true
+      ctx?.revert()
+    }
   }, [])
 
   const inputStyle = {
@@ -181,7 +200,7 @@ function ContactSection() {
               fontSize: 16,
               color: 'var(--color-success)',
             }}>
-              Thank you! We'll be in touch within one business day.
+              Thank you! We&apos;ll be in touch within one business day.
             </div>
           )}
           {error && (
@@ -200,16 +219,16 @@ function ContactSection() {
 
           <div className="form-field" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             <Field label="Your Name">
-              <input style={inputStyle} value={form.name} onChange={set('name')} placeholder="Cindy Brown" onFocus={handleFocus} onBlur={handleBlur} />
+              <input required style={inputStyle} value={form.name} onChange={set('name')} placeholder="Cindy Brown" onFocus={handleFocus} onBlur={handleBlur} />
             </Field>
             <Field label="Phone">
-              <input style={inputStyle} value={form.phone} onChange={set('phone')} placeholder="(910) 555-0100" onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="tel" style={inputStyle} value={form.phone} onChange={set('phone')} placeholder="(910) 555-0100" onFocus={handleFocus} onBlur={handleBlur} />
             </Field>
           </div>
 
           <div className="form-field">
             <Field label="Email">
-              <input style={inputStyle} value={form.email} onChange={set('email')} placeholder="yum@imaginarycakes.com" onFocus={handleFocus} onBlur={handleBlur} />
+              <input required type="email" style={inputStyle} value={form.email} onChange={set('email')} placeholder="yum@imaginarycakes.com" onFocus={handleFocus} onBlur={handleBlur} />
             </Field>
           </div>
 
@@ -218,7 +237,7 @@ function ContactSection() {
               <input style={inputStyle} value={form.eventDate} onChange={set('eventDate')} placeholder="June 14, 2026" onFocus={handleFocus} onBlur={handleBlur} />
             </Field>
             <Field label="Guest Count">
-              <input style={inputStyle} value={form.guests} onChange={set('guests')} placeholder="80" onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="number" min="1" style={inputStyle} value={form.guests} onChange={set('guests')} placeholder="80" onFocus={handleFocus} onBlur={handleBlur} />
             </Field>
           </div>
 
@@ -250,7 +269,7 @@ function ContactSection() {
 
           <div className="form-field">
             <Field label="Tell Us About Your Event">
-              <textarea value={form.message} onChange={set('message')} rows={6} onFocus={handleFocus} onBlur={handleBlur}
+              <textarea required value={form.message} onChange={set('message')} rows={6} onFocus={handleFocus} onBlur={handleBlur}
                 placeholder="Theme, color palette, inspiration photos, dietary needs — anything that helps us picture the day."
                 style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
               />
@@ -426,7 +445,7 @@ function ContactSection() {
           section > div[style*="1.4fr 1fr"] { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 560px) {
-          div[style*="gridTemplateColumns: '1fr 1fr'"] { grid-template-columns: 1fr !important; }
+          div[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

@@ -6,24 +6,34 @@ export default function AwardsRow() {
   const ref = useRef(null)
 
   useEffect(() => {
+    let ctx
+    let cancelled = false
     ;(async () => {
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled) return
       gsap.registerPlugin(ScrollTrigger)
       const el = ref.current
       if (!el) return
-      gsap.fromTo(
-        el.querySelectorAll('img'),
-        { opacity: 0, y: 20, scale: 0.92 },
-        {
-          opacity: 1, y: 0, scale: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-        }
-      )
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          el.querySelectorAll('img'),
+          { opacity: 0, y: 20, scale: 0.92 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          }
+        )
+      })
     })()
+
+    return () => {
+      cancelled = true
+      ctx?.revert()
+    }
   }, [])
 
   return (

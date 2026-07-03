@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <img src="/assets/logo.png" alt="Imaginary Cakes" style={{ height: 80 }} />
             <p style={{ marginTop: 18, fontStyle: 'italic', color: 'var(--color-body)', fontSize: 16, maxWidth: 360 }}>
-              "{BUSINESS.tagline}"
+              &ldquo;{BUSINESS.tagline}&rdquo;
             </p>
             <p style={{ marginTop: 12, fontSize: 14, color: 'var(--color-muted)' }}>
               Mother-daughter custom cake bakery in Wilmington, NC. Established {BUSINESS.established}.

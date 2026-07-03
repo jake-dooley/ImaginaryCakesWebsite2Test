@@ -120,7 +120,7 @@ function HelpCard() {
       <div>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 500 }}>Not sure where to start?</div>
         <div style={{ marginTop: 6, fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-body)' }}>
-          We host tastings by appointment. Bring three favorite combinations and we'll bake you samples to try in the shop.
+          We host tastings by appointment. Bring three favorite combinations and we&apos;ll bake you samples to try in the shop.
         </div>
       </div>
       <LavenderButton href="/contact">Book a Tasting</LavenderButton>

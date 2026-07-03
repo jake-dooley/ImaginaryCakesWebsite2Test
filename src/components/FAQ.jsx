@@ -96,7 +96,7 @@ export function FAQHelpCard({ href = '/contact', tint = '#fff', accent = 'var(--
         <IconHelp size={22} />
       </div>
       <div style={{ fontFamily: 'var(--font-display)', fontSize: 17 }}>
-        <b style={{ fontWeight: 600 }}>Didn't find your question?</b>
+        <b style={{ fontWeight: 600 }}>Didn&apos;t find your question?</b>
         <div style={{ marginTop: 4, color: 'var(--color-body)' }}>
           Reach out to Cindy directly — we love talking cake.
         </div>

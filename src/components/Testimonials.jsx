@@ -6,16 +6,22 @@ import { REVIEWS } from '@/data'
 export default function TestimonialCarousel({ reviews = REVIEWS, tint = '#fff', accent = 'var(--sprinkle-blue)' }) {
   const [idx, setIdx] = useState(0)
   const trackRef = useRef(null)
+  const animatingRef = useRef(false)
 
   const animateTransition = useCallback(async (newIdx) => {
+    if (animatingRef.current) return
+    animatingRef.current = true
     const gsap = (await import('gsap')).default
     const el = trackRef.current
-    if (!el) { setIdx(newIdx); return }
+    if (!el) { setIdx(newIdx); animatingRef.current = false; return }
     gsap.to(el, {
       opacity: 0, x: -20, duration: 0.22, ease: 'power2.in',
       onComplete: () => {
         setIdx(newIdx)
-        gsap.fromTo(el, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.35, ease: 'power2.out' })
+        gsap.fromTo(el, { opacity: 0, x: 20 }, {
+          opacity: 1, x: 0, duration: 0.35, ease: 'power2.out',
+          onComplete: () => { animatingRef.current = false },
+        })
       },
     })
   }, [])
@@ -66,7 +72,7 @@ export default function TestimonialCarousel({ reviews = REVIEWS, tint = '#fff', 
           fontFamily: 'var(--font-display)', fontSize: 18, fontStyle: 'italic',
           lineHeight: 1.6, color: 'var(--color-body)', margin: 0,
         }}>
-          "{r.quote}"
+          &ldquo;{r.quote}&rdquo;
         </p>
 
         <div style={{
