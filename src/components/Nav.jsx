@@ -71,13 +71,13 @@ export default function Nav() {
         boxShadow: '0 1px 0 rgba(44,24,16,.08)',
       }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', padding: '10px 0' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', padding: '6px 0' }}>
           <img
             className="nav-logo"
             src="/assets/Imaginary_cakes_Logo_final.png"
             alt="Imaginary Cakes logo"
             style={{
-              maxHeight: compact ? 48 : 60,
+              maxHeight: compact ? 48 : 68,
               width: 'auto',
               transition: 'max-height 0.35s ease',
             }}
@@ -176,7 +176,7 @@ export default function Nav() {
           .nav-hamburger { display: flex !important; }
           header nav { display: none !important; }
           .nav-order-btn { display: none !important; }
-          .nav-logo { max-height: 40px !important; }
+          .nav-logo { max-height: 44px !important; }
         }
       `}</style>
     </>
