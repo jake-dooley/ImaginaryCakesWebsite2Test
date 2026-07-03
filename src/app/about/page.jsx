@@ -97,7 +97,7 @@ function StorySection() {
 function WhatWeMakeSection() {
   const ref = useStaggerReveal('.feature-card', { stagger: 0.12 })
   return (
-    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '0 48px 96px' }}>
+    <section style={{ maxWidth: 1240, margin: '0 auto', padding: '72px 48px 96px' }}>
       <SectionIntro eyebrow="What We Make" title="Custom, By Definition —" titleItalicPart="Never From a Catalogue." accentColor="#fff" />
       <div ref={ref} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
         {[
