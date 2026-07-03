@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Visit */}
           <FooterCol title="Visit">
             <FooterRow icon={<IconMapPin size={14} />}>{BUSINESS.address}</FooterRow>
-            <FooterRow icon={<IconClock size={14} />}>{BUSINESS.hours}</FooterRow>
+            <FooterRow icon={<IconClock size={14} />}>{BUSINESS.hours}<br />{BUSINESS.hoursSaturday}</FooterRow>
             <FooterRow muted>{BUSINESS.hoursNote}</FooterRow>
           </FooterCol>
 

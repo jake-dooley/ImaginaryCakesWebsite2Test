@@ -407,6 +407,7 @@ function ContactSection() {
 
           <InfoLine icon={<IconClock size={18} />} title="Hours" iconColor="var(--sprinkle-green)">
             {BUSINESS.hours}<br />
+            {BUSINESS.hoursSaturday}<br />
             <span style={{ color: 'var(--color-muted)', fontSize: 14 }}>{BUSINESS.hoursNote}</span>
           </InfoLine>
           <InfoLine icon={<IconPhone size={18} />} title="Phone" iconColor="var(--sprinkle-green)">{BUSINESS.phone}</InfoLine>
