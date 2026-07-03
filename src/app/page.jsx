@@ -112,18 +112,9 @@ function HeroSection() {
               fontSize: 19,
               color: 'var(--color-body)',
               maxWidth: 460,
-              margin: '0 0 12px',
-            }}>
-              For your sweetest moments, because every occasion deserves something beautiful.
-            </p>
-            <p style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 16,
-              color: 'var(--color-muted)',
-              maxWidth: 460,
               margin: 0,
             }}>
-              Indulge in our signature butter pound cake, made with the finest ingredients.
+              For your sweetest moments, because every occasion deserves something beautiful.
             </p>
           </div>
 
