@@ -85,7 +85,7 @@ function ContactSection() {
       const formData = new FormData()
       Object.entries(form).forEach(([k, v]) => formData.append(k, v))
       photos.forEach((file) => formData.append('attachment', file))
-      formData.append('access_key', '7fc6669b-4903-42b5-a343-ecebbda3c330')
+      formData.append('access_key', '5a62270f-af58-4e15-b653-62d06e482f07')
       const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
       const data = await response.json()
       if (response.ok) {
