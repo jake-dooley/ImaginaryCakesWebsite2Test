@@ -7,7 +7,7 @@ export const BUSINESS = {
   website: 'imaginarycakes.com',
   hours: 'Mon – Fri, 9am – 3pm',
   hoursSaturday: 'Sat, 10am – 12pm',
-  hoursNote: 'Sunday closed · By appointment only',
+  hoursNote: 'Sunday closed',
   notice: 'Minimum 2-week notice for all orders',
   established: 2009,
   scale: 'Events from 6 to 600 guests',

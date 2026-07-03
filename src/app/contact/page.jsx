@@ -399,7 +399,7 @@ function ContactSection() {
               5202 Carolina Beach Rd, Unit 12<br />Wilmington, NC 28412
             </p>
             <p style={{ marginTop: 10, fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 14, color: 'var(--color-muted)' }}>
-              By appointment only — please call or email first.
+              Please call or email first.
             </p>
           </div>
 
