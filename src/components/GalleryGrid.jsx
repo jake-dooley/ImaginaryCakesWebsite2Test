@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { CATEGORIES, CAKE_PHOTOS } from '@/data'
 
 const CHIPS = [{ key: 'all', label: 'All' }, ...CATEGORIES]
-const ALL_PHOTOS = [...CAKE_PHOTOS, ...CAKE_PHOTOS].map((p, i) => ({ ...p, uid: `${p.id}-${i}` }))
+const ALL_PHOTOS = CAKE_PHOTOS.map((p) => ({ ...p, uid: p.id }))
 
 export default function GalleryGrid() {
   const [filter, setFilter] = useState('all')
